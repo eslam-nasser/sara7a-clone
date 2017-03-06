@@ -1,4 +1,5 @@
 {
-    "db": "mongodb://localhost:27017/sara7a_clone",
+    // "db": "mongodb://localhost:27017/sara7a_clone",
+    "db": "mongodb://d4c7MDfZ9kNwUt8vqXw3:d4c7MDfZ9kNwUt8vqXw3@ds121190.mlab.com:21190/sara7a",
     "secret": "d4c7MDfZ9kNwUt8vqXw3"
 }
