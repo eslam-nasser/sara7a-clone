@@ -1,0 +1,26 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  
+  <div id="custom_container" class="container" style="max-width: 300px">
+    <div class="row">
+        <center>
+            <i class="icon ion-paper-airplane" style="font-size: 40px; margin: 10px auto; display: block;"></i>
+        </center>
+        <form class="col s12" method="POST" action="/users/login">
+        <div class="row">
+            <div class="input-field col s12">
+                <input name="his_email" type="text" class="validate" autofocus>
+                <label for="his_email">Email</label>
+            </div>
+            <div class="input-field col s12">
+                <input name="password_1" type="password" class="validate">
+                <label for="password_1">Password</label>
+            </div>
+        </div>
+        <button class="waves-effect waves-light btn" type="submit">Login</button>
+        </form>
+    </div>
+  </div>
+        
+{% endblock %}

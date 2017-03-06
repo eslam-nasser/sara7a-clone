@@ -1,0 +1,58 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  
+  <div class="container profile-page">
+    <div class="profile">
+        <div class="avatar" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png')"></div>
+        <div class="name">{{user.name}}</div>
+        <div class="counters">
+            <span class="messages">{{user.messages.messages|length}} messages</span>
+            <span class="space">|</span>
+            <span class="account-views">27 view</span>
+        </div>
+        <a target="_blank" href="{{siteUrl}}/{{user.url}}" class="my_url">{{siteUrl}}/{{user.url}}</a>
+    </div>
+    
+    <div class="hr"></div>
+
+    <div class="messages">
+    {% if user.messages.length > 0%}
+        <div class="row">
+            <div class="input-field col s4">
+                <select>
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Newest</option>
+                    <option value="2">Oldest</option>
+                    <option value="3">Only hidden</option>
+                </select>
+                <label>Sort messages</label>
+            </div>
+            <div class="col s8">
+                <a class="waves-effect waves-light btn right">Options</a>
+                <a class="waves-effect waves-light btn right">Show hidden messages</a>
+            </div>
+        </div>
+        
+            {% for msg in user.messages %}
+            <div class="row single-message">
+                <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-content">
+                            <p>{{msg.content}}</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Hide</a>
+                            <a href="#">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <h2 style="text-align: center; padding-top: 40px;">No messages yet!</h2>
+        {% endif %}
+    </div>
+  </div>
+        
+{% endblock %}

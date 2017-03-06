@@ -1,0 +1,4 @@
+{
+    "db": "mongodb://localhost:27017/sara7a_clone",
+    "secret": "d4c7MDfZ9kNwUt8vqXw3"
+}

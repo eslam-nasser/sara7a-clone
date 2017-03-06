@@ -1,0 +1,50 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  
+  <div id="custom_container" class="container">
+    <h3>Register</h3>
+
+    <div class="row">
+        <form class="col s12" method="POST" action="/users/register">
+        <div class="row">
+            <div class="input-field col s6">
+                <input name="his_name" type="text" class="validate">
+                <label for="his_name">Full name</label>
+            </div>
+            <div class="input-field col s6">
+                <input name="his_email" type="email" class="validate">
+                <label for="his_email">Email</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input name="password_1" type="password" class="validate">
+                <label for="password_1">Password</label>
+            </div>
+            <div class="input-field col s6">
+                <input name="password_2" type="password" class="validate">
+                <label for="password_2">Confirm password</label>
+            </div>
+        </div>
+        <div class="row">
+            {#<div class="file-field input-field col s6">
+                <div class="btn">
+                    <span>File</span>
+                    <input type="file" type="images" name="his_avatar">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Personal image(optional)">
+                </div>
+            </div>#}
+            <div class="input-field col s6 site-prefix">
+                <input name="his_link" type="text" class="validate">
+                <label for="his_link">Your link</label>
+            </div>
+        </div>
+        <button class="waves-effect waves-light btn" type="submit">Submit</button>
+        </form>
+    </div>
+  </div>
+        
+{% endblock %}

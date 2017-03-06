@@ -1,0 +1,31 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  
+  <div id="custom_container" class="container">
+    <h4>Write a message to {{username}}:</h4>
+    <div class="row">
+    <form class="col s12" method="POST">
+      
+        <textarea autofocus name="new_message" class="materialize-textarea" placeholder="Make it count ;)"></textarea>
+        <button type="submit" class="waves-effect waves-light btn">Send</button>
+    </form>
+  </div>
+  </div>
+
+  <style>
+    textarea{
+        border: 1px solid rgb(221, 221, 221) !important;
+        padding: 10px !important;
+        min-height: 100px !important;
+        width: 98% !important;
+        resize: vertical !important;
+        border-radius: 5px !important;
+        margin-top: 20px !important
+    }
+    textarea:focus,
+    textarea:active{border: 1px solid rgb(221, 221, 221) !important;}
+    
+  </style>
+        
+{% endblock %}
