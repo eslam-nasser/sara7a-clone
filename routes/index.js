@@ -8,8 +8,8 @@ router.get('/', function(req, res, next) {
 });
 
 // get message box
-router.get('/:user_link', function(req, res, next) {
-  const user_link = req.params.user_link
+router.get(/\/([^\/]+)\/?/, function(req, res, next) {
+  const user_link = req.params[0];
   console.log(user_link)
   User.getUserByUrl(user_link, function(err, user){
     if(!err){
