@@ -28,7 +28,7 @@ router.post('/register', function(req, res, next) {
     if(err){
       res.redirect('register')
     }else{
-      // req.session.user = user
+      req.session.id = user._id
       res.redirect('profile/'+user._id)
       // console.log(req.session)
     }
@@ -40,7 +40,7 @@ router.post('/register', function(req, res, next) {
 // router.get('/profile', passport.authenticate('jwt', {session: false}), function(req, res, next) {
 router.get('/profile/:id', function(req, res, next) {
   var siteUrl = req.protocol + '://' + req.get('host')
-
+  console.log(req.session)
   User.getUserById(req.params.id, function(err, user){
     res.render('profile', {
       title: 'My profile',
