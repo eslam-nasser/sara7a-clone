@@ -8,7 +8,7 @@ const UserSchema = mongoose.Schema({
     password: {type: String, required: true},
     url: {type: String, required: true},
     messages: Object,
-    // avatar: {type: Object, required: true, default: {}},
+    avatar: Object
 })
 
 const User = module.exports = mongoose.model('User', UserSchema)

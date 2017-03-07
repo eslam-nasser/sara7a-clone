@@ -8,22 +8,24 @@ router.get('/', function(req, res, next) {
 });
 
 // get message box
-router.get(/\/([^\/]+)\/?/, function(req, res, next) {
-  const user_link = req.params[0];
-  console.log(user_link)
+router.get('/user/:user_link', function(req, res, next) {
+  const user_link = req.params.user_link;
+  console.log('USER LINK', user_link)
   User.getUserByUrl(user_link, function(err, user){
     if(!err){
       res.render('write', {
         title: 'Write a message',
         username: user.name
       })
+    }else{
+      throw err;
     }
   })
 });
 
 
 // get message box
-router.post('/:user_link', function(req, res, next) {
+router.post('/user/:user_link', function(req, res, next) {
   const user_link   = req.params.user_link
   const new_message = {
     content: req.body.new_message,
@@ -44,6 +46,22 @@ router.post('/:user_link', function(req, res, next) {
         })
       }
     })
+});
+
+
+
+// Get users data
+// router.get('/profile', passport.authenticate('jwt', {session: false}), function(req, res, next) {
+router.get('/user/profile/:id', function(req, res, next) {
+  var siteUrl = req.protocol + '://' + req.get('host')
+  console.log(req.session)
+  User.getUserById(req.params.id, function(err, user){
+    res.render('profile', {
+      title: 'My profile',
+      user: user,
+      siteUrl: siteUrl
+    });
+  })
 });
 
 

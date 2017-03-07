@@ -6,7 +6,7 @@
     <h3>Register</h3>
 
     <div class="row">
-        <form class="col s12" method="POST" action="/users/register">
+        <form class="col s12" method="POST" action="/users/register" enctype="multipart/form-data">
         <div class="row">
             <div class="input-field col s6">
                 <input name="his_name" type="text" class="validate">
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="row">
-            {#<div class="file-field input-field col s6">
+            <div class="file-field input-field col s6">
                 <div class="btn">
                     <span>File</span>
                     <input type="file" type="images" name="his_avatar">
@@ -36,7 +36,7 @@
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text" placeholder="Personal image(optional)">
                 </div>
-            </div>#}
+            </div>
             <div class="input-field col s6 site-prefix">
                 <input name="his_link" type="text" class="validate">
                 <label for="his_link">Your link</label>

@@ -5,6 +5,21 @@ const passport        = require('passport')
 const jwt             = require('jsonwebtoken')
 const config          = require('config')
 
+var multer          = require('multer')
+var crypto          = require('crypto')
+var path            = require('path');
+
+
+var storage = multer.diskStorage({
+  destination: './public/uploads/users/',
+  filename: function (req, file, cb) {
+    crypto.randomBytes(16, function (err, raw) {
+      if (err) return cb(err)
+      cb(null, raw.toString('hex') + path.extname(file.originalname))
+    })
+  }
+})
+var upload = multer({ storage: storage })
 
 // Get register form
 router.get('/register', function(req, res, next) {
@@ -12,7 +27,7 @@ router.get('/register', function(req, res, next) {
 })
 
 // Register new user
-router.post('/register', function(req, res, next) {
+router.post('/register', upload.single('his_avatar'), function(req, res, next) {
   // Create a new user from the front end data
   let newUser = new User({
     name: req.body.his_name,
@@ -20,6 +35,7 @@ router.post('/register', function(req, res, next) {
     username: req.body.username,
     password: req.body.password_2,
     url: req.body.his_link,
+    avatar: req.file,
     messages: []
   })
 
@@ -29,26 +45,14 @@ router.post('/register', function(req, res, next) {
       res.redirect('register')
     }else{
       req.session.id = user._id
-      res.redirect('profile/'+user._id)
+      res.redirect('/user/profile/'+user._id)
       // console.log(req.session)
     }
   })
 });
 
 
-// Get users data
-// router.get('/profile', passport.authenticate('jwt', {session: false}), function(req, res, next) {
-router.get('/profile/:id', function(req, res, next) {
-  var siteUrl = req.protocol + '://' + req.get('host')
-  console.log(req.session)
-  User.getUserById(req.params.id, function(err, user){
-    res.render('profile', {
-      title: 'My profile',
-      user: user,
-      siteUrl: siteUrl
-    });
-  })
-});
+
 
 
 router.get('/login', function(req, res, next) {
@@ -80,7 +84,7 @@ router.post('/login', function(req, res, next) {
           expiresIn: 604800 // 1 week
         })
         req.session.id = user._id
-        res.redirect('/users/profile/'+user._id)
+        res.redirect('/user/profile/'+user._id)
 
         // res.json({
         //   success: true,

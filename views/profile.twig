@@ -4,14 +4,18 @@
   
   <div class="container profile-page">
     <div class="profile">
+        {% if user.avatar %}
+        <div class="avatar" style="background-image: url('{{siteUrl}}/uploads/users/{{user.avatar.filename}}')"></div>
+        {% else %}
         <div class="avatar" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png')"></div>
+        {% endif %}
         <div class="name">{{user.name}}</div>
         <div class="counters">
             <span class="messages">{{user.messages.messages|length}} messages</span>
             <span class="space">|</span>
             <span class="account-views">27 view</span>
         </div>
-        <a target="_blank" href="{{siteUrl}}/{{user.url}}" class="my_url">{{siteUrl}}/{{user.url}}</a>
+        <a target="_blank" href="{{siteUrl}}/user/{{user.url}}" class="my_url">{{siteUrl}}/user/{{user.url}}</a>
     </div>
     
     <div class="hr"></div>
